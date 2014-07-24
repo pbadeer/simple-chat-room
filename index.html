@@ -13,6 +13,7 @@
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
+            "use strict";
             var socket = io();
 
             document.forms[0].onsubmit = function() {
@@ -38,7 +39,7 @@
             }
 
             socket.on('message', function(msg) {
-                receiveMessage(msg)
+                receiveMessage(msg);
             });
         </script>
     </body>
