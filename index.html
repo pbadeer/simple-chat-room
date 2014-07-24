@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Simple Node.js Chat Room</title>
+    </head>
+    <body>
+        <ul id="log"></ul>
+
+        <form>
+            <input id="input" autocomplete="off" />
+            <button>Send</button>
+        </form>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+
+            document.forms[0].onsubmit = function() {
+                sendMessage();
+                return false;
+            }
+
+            function sendMessage() {
+                var inp = document.getElementById('input');
+                if(inp.value != '') {
+                    socket.emit('message', inp.value);
+                    inp.value = '';
+                }
+                return false;
+            }
+
+            function receiveMessage(msg) {
+                var log = document.getElementById('log'),
+                    li = document.createElement('li'),
+                    text = document.createTextNode(msg);
+                li.appendChild(text);
+                log.appendChild(li);
+            }
+
+            socket.on('message', function(msg) {
+                receiveMessage(msg)
+            });
+        </script>
+    </body>
+</html>
