@@ -1,5 +1,5 @@
 {
-  "name": "Simple Node.js Chat Room",
+  "name": "simple-chat-room",
   "version": "0.0.1",
   "description": "An extremely simple chat room built on Node.js, Express, and Socket.io",
   "dependencies": {
